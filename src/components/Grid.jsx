@@ -16,7 +16,7 @@ function normalizePageSize(pageSize) {
 
   if (pageSize === AllItemsPerPage) {
     return {
-      label: 'All',
+      label: '全部',
       value: 999999,
     };
   }
@@ -161,8 +161,8 @@ function Grid(props) {
                                       pages={pages}
                                       activePage={activePage}
                                       pageNeighbours={pageNeighbours}
-                                      prev="Previous"
-                                      next="Next"
+                                      prev="前一页"
+                                      next="后一页"
                                       onSelect={onPage}
                                     />
                                   </div>
@@ -187,9 +187,6 @@ function Grid(props) {
                                                 }
                                               </select>
                                             </div>
-                                            <span className="col-auto">
-                                              items per page
-                                            </span>
                                           </div>
                                         </div>
                                       )
@@ -205,7 +202,7 @@ function Grid(props) {
                             ? (
                               <div className="col-auto ml-auto">
                                 <span className="item-counter pull-right">
-                                  <span className="page-num">{ firstItem } - { lastItem }</span> / { total } total
+                                  <span className="page-num">{ firstItem } - { lastItem }</span> / { total } 全部
                                 </span>
                               </div>
                             )

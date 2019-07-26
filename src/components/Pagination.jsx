@@ -144,8 +144,8 @@ Pagination.propTypes = {
 Pagination.defaultProps = {
   activePage: 1,
   pageNeighbours: 1,
-  prev: 'Previous',
-  next: 'Next',
+  prev: '前一页',
+  next: '后一页',
 };
 
 export default Pagination;

@@ -45,7 +45,7 @@ export default class SubmissionGrid extends React.Component {
         permissionsResolver() {
           return true;
         },
-        title: 'View',
+        title: '查看',
       },
       {
         action: 'edit',
@@ -54,7 +54,7 @@ export default class SubmissionGrid extends React.Component {
         permissionsResolver() {
           return true;
         },
-        title: 'Edit',
+        title: '编辑',
       },
       {
         action: 'delete',
@@ -115,7 +115,7 @@ export default class SubmissionGrid extends React.Component {
 
     columns.push({
       key: 'operations',
-      title: 'Operations',
+      title: '操作',
     });
 
     setColumnsWidth(columns);
@@ -210,7 +210,7 @@ export default class SubmissionGrid extends React.Component {
         Cell={this.Cell}
         activePage={page}
         columns={columns}
-        emptyText="No data found"
+        emptyText="无提交数据"
         firstItem={skip + 1}
         items={submissions}
         lastItem={last}

@@ -78,11 +78,11 @@ export default class FormEdit extends Component {
         <div className="row">
           <div className="col-lg-2 col-md-4 col-sm-4">
             <div id="form-group-title" className="form-group">
-              <label htmlFor="title" className="control-label field-required">Title</label>
+              <label htmlFor="title" className="control-label field-required">标题</label>
               <input
                 type="text"
                 className="form-control" id="title"
-                placeholder="Enter the form title"
+                placeholder="表单标题"
                 value={this.state.form.title}
                 onChange={event => this.handleChange('title', event)}
               />
@@ -90,12 +90,12 @@ export default class FormEdit extends Component {
           </div>
           <div className="col-lg-2 col-md-4 col-sm-4">
             <div id="form-group-name" className="form-group">
-              <label htmlFor="name" className="control-label field-required">Name</label>
+              <label htmlFor="name" className="control-label field-required">名字</label>
               <input
                 type="text"
                 className="form-control"
                 id="name"
-                placeholder="Enter the form machine name"
+                placeholder="表单API Key"
                 value={this.state.form.name}
                 onChange={event => this.handleChange('name', event)}
               />
@@ -103,7 +103,7 @@ export default class FormEdit extends Component {
           </div>
           <div className="col-lg-2 col-md-3 col-sm-3">
             <div id="form-group-display" className="form-group">
-              <label htmlFor="name" className="control-label">Display as</label>
+              <label htmlFor="name" className="control-label">显示类型</label>
               <div className="input-group">
                 <select
                   className="form-control"
@@ -112,8 +112,7 @@ export default class FormEdit extends Component {
                   value={this.state.form.display}
                   onChange={event => this.handleChange('display', event)}
                 >
-                  <option label="Form" value="form">Form</option>
-                  <option label="Wizard" value="wizard">Wizard</option>
+                  <option label="表单" value="form">Form</option>
                   <option label="PDF" value="pdf">PDF</option>
                 </select>
               </div>
@@ -121,7 +120,7 @@ export default class FormEdit extends Component {
           </div>
           <div className="col-lg-2 col-md-3 col-sm-3">
             <div id="form-group-type" className="form-group">
-              <label htmlFor="form-type" className="control-label">Type</label>
+              <label htmlFor="form-type" className="control-label">存储类型</label>
               <div className="input-group">
                 <select
                   className="form-control"
@@ -130,21 +129,20 @@ export default class FormEdit extends Component {
                   value={this.state.form.type}
                   onChange={event => this.handleChange('type', event)}
                 >
-                  <option label="Form" value="form">Form</option>
-                  <option label="Resource" value="resource">Resource</option>
+                  <option label="数据库" value="form">数据库</option>
+                  <option label="文件" value="resource">文件</option>
                 </select>
               </div>
             </div>
           </div>
           <div className="col-lg-2 col-md-4 col-sm-4">
             <div id="form-group-path" className="form-group">
-              <label htmlFor="path" className="control-label field-required">Path</label>
+              <label htmlFor="path" className="control-label field-required">路径</label>
               <div className="input-group">
                 <input
                   type="text"
                   className="form-control"
                   id="path"
-                  placeholder="example"
                   style={{'textTransform': 'lowercase', width:'120px'}}
                   value={this.state.form.path}
                   onChange={event => this.handleChange('path', event)}

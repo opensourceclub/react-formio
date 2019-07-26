@@ -32,12 +32,12 @@ export default class FormGrid extends React.Component {
       {
         key: 'title',
         sort: true,
-        title: 'Form',
+        title: '名字',
         width: 8,
       },
       {
         key: 'operations',
-        title: 'Operations',
+        title: '操作',
         width: 4,
       },
     ],
@@ -65,7 +65,7 @@ export default class FormGrid extends React.Component {
         permissionsResolver() {
           return true;
         },
-        title: 'Enter Data',
+        title: '填写表单',
       },
       {
         action: 'submission',
@@ -74,7 +74,7 @@ export default class FormGrid extends React.Component {
         permissionsResolver() {
           return true;
         },
-        title: 'View Data',
+        title: '查看已提交表单',
       },
       {
         action: 'edit',
@@ -83,7 +83,7 @@ export default class FormGrid extends React.Component {
         permissionsResolver() {
           return true;
         },
-        title: 'Edit Form',
+        title: '编辑表单',
       },
       {
         action: 'delete',
@@ -234,7 +234,7 @@ export default class FormGrid extends React.Component {
         Cell={this.Cell}
         activePage={page}
         columns={columns}
-        emptyText="No forms found"
+        emptyText="无表单数据"
         firstItem={skip + 1}
         items={forms}
         lastItem={last}

@@ -57,10 +57,10 @@ export default class Errors extends Component {
 
     // If a conflict error occurs on a form, the form is returned.
     if (error.hasOwnProperty('_id') && error.hasOwnProperty('display')) {
-      return 'Another user has saved this form already. Please reload and re-apply your changes.';
+      return '表单已被其他用户修改，请重新加载。';
     }
 
-    return 'An error occurred. See console logs for details.';
+    return '出错了，请查看错误日志。';
   }
 
   render() {

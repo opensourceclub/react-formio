@@ -31,7 +31,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "core-js": "^3.1.4",
-    "formiojs": "git+ssh://git@github.com/xiyangliu/formio.js.git#chinese-translation-releases",
+    "formiojs": "git+ssh://git@github.com/opensourceclub/formio.js.git#chinese-translation-releases",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "recompose": "^0.30.0"

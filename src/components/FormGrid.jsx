@@ -65,7 +65,7 @@ export default class FormGrid extends React.Component {
         permissionsResolver() {
           return true;
         },
-        title: '填写表单',
+        title: '提交',
       },
       {
         action: 'submission',
@@ -74,7 +74,7 @@ export default class FormGrid extends React.Component {
         permissionsResolver() {
           return true;
         },
-        title: '查看已提交表单',
+        title: '查看',
       },
       {
         action: 'edit',
@@ -83,7 +83,7 @@ export default class FormGrid extends React.Component {
         permissionsResolver() {
           return true;
         },
-        title: '编辑表单',
+        title: '编辑',
       },
       {
         action: 'delete',

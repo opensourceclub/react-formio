@@ -210,7 +210,7 @@ export default class SubmissionGrid extends React.Component {
         Cell={this.Cell}
         activePage={page}
         columns={columns}
-        emptyText="无提交数据"
+        emptyText="（空）"
         firstItem={skip + 1}
         items={submissions}
         lastItem={last}

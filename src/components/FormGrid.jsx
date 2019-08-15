@@ -5,6 +5,10 @@ import _map from 'lodash/map';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import {Delete, Save} from '@material-ui/icons';
+import {Button} from '@material-ui/core';
+import {withStyles} from '@material-ui/styles';
+
 import {defaultPageSizes} from '../constants';
 import {
   Columns,
@@ -15,7 +19,12 @@ import {stopPropagationWrapper} from '../utils';
 
 import Grid from './Grid';
 
-export default class FormGrid extends React.Component {
+const styles = {
+  button: {
+    marginRight: 10
+  }
+};
+export default withStyles(styles)(class FormGrid extends React.Component {
   static propTypes = {
     columns: Columns,
     formAccess: PropTypes.func,
@@ -25,6 +34,7 @@ export default class FormGrid extends React.Component {
     onPageSizeChanged: PropTypes.func,
     operations: Operations,
     pageSizes: PageSizes,
+    classes: PropTypes.object,
   }
 
   static defaultProps = {
@@ -60,8 +70,8 @@ export default class FormGrid extends React.Component {
     operations: [
       {
         action: 'view',
-        buttonType: 'primary',
-        icon: 'pencil',
+        buttonType: 'default',
+        icon: <Save fontSize="small"/>,
         permissionsResolver() {
           return true;
         },
@@ -69,8 +79,8 @@ export default class FormGrid extends React.Component {
       },
       {
         action: 'submission',
-        buttonType: 'warning',
-        icon: 'list-alt',
+        buttonType: 'default',
+        icon: <Save fontSize="small"/>,
         permissionsResolver() {
           return true;
         },
@@ -78,8 +88,8 @@ export default class FormGrid extends React.Component {
       },
       {
         action: 'edit',
-        buttonType: 'secondary',
-        icon: 'edit',
+        buttonType: 'default',
+        icon: <Save fontSize="small"/>,
         permissionsResolver() {
           return true;
         },
@@ -87,11 +97,12 @@ export default class FormGrid extends React.Component {
       },
       {
         action: 'delete',
-        buttonType: 'danger',
-        icon: 'trash',
+        buttonType: 'secondary',
+        icon: <Delete fontSize="small"/>,
         permissionsResolver() {
           return true;
         },
+        title: '删除',
       },
     ],
     pageSizes: defaultPageSizes,
@@ -155,7 +166,7 @@ export default class FormGrid extends React.Component {
             }
           })}
         >
-          <h5>{form.title}</h5>
+          <span>{form.title}</span>
         </span>
       );
     }
@@ -165,29 +176,23 @@ export default class FormGrid extends React.Component {
           {
             operations.map(({
               action,
-              buttonType = 'primary',
-              icon = '',
+              buttonType = 'default',
+              icon = null,
               permissionsResolver = () => true,
               title = '',
             }) =>
               permissionsResolver(form)
                 ? (
-                  <span
-                    className={`btn btn-${buttonType} btn-sm form-btn`}
+                  <Button
+                    variant="contained"
+                    color={buttonType}
+                    className={this.props.classes.button}
                     onClick={stopPropagationWrapper(() => onAction(form, action))}
                     key={action}
                   >
-                    {
-                      icon
-                        ? (
-                          <span>
-                            <i className={`fa fa-${icon}`} />&nbsp;
-                          </span>
-                        )
-                        : null
-                    }
+                    {icon}
                     {title}
-                  </span>
+                  </Button>
                 )
                 : null
             )
@@ -250,4 +255,4 @@ export default class FormGrid extends React.Component {
       />
     );
   }
-}
+})

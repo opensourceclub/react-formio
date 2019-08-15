@@ -7,7 +7,16 @@ import React from 'react';
 import {defaultPageSizes} from '../constants';
 import {AllItemsPerPage, PageSizes} from '../types';
 
+import Table from '@material-ui/core/Table';
+import Paper from '@material-ui/core/Paper';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+
 import Pagination from './Pagination';
+import {Button} from '@material-ui/core';
 
 function normalizePageSize(pageSize) {
   if (_isObject(pageSize)) {
@@ -67,15 +76,14 @@ function Grid(props) {
     total,
   } = props;
   const normalizedPageSizes = pageSizes.map(normalizePageSize);
-
   return (
-    <div>
+    <Paper>
       {
         items.length
           ? (
-            <ul className="list-group list-group-striped">
-              <li className="list-group-item list-group-header hidden-xs hidden-md">
-                <div className="row">
+            <Table>
+              <TableHead>
+                <TableRow>
                   {
                     columns.map((column) => {
                       const {
@@ -88,20 +96,20 @@ function Grid(props) {
 
                       const columnProps = {
                         key,
-                        className,
+                        // className,
                       };
 
                       if (!title) {
                         return (
-                          <div {...columnProps} />
+                          <TableCell {...columnProps} />
                         );
                       }
 
                       if (!sort) {
                         return (
-                          <div {...columnProps}>
+                          <TableCell {...columnProps}>
                             <strong>{title}</strong>
-                          </div>
+                          </TableCell>
                         );
                       }
 
@@ -118,35 +126,35 @@ function Grid(props) {
                       }
 
                       return (
-                        <div {...columnProps}>
+                        <TableCell {...columnProps}>
                           <span
                             style={{cursor: 'pointer'}}
                             onClick={() => onSort(column)}
                           >
                             <strong>{title} <span className={sortClass}/></strong>
                           </span>
-                        </div>
+                        </TableCell>
                       );
                     })
                   }
-                </div>
-              </li>
+                </TableRow>
+              </TableHead>
+              <TableBody>
               {
-                items.map((item) => (
-                  <li className="list-group-item" key={item._id}>
-                    <div className="row" onClick={() => onAction(item, 'row')}>
+                items.map(item => (
+                  <TableRow  key={item._id} onClick={() => onAction(item, 'row')}>
                       {
                         columns.map((column) => (
-                          <div key={column.key} className={`col col-md-${column.width}`}>
+                          <TableCell key={column.key}>
                             <Cell row={item} column={column} />
-                          </div>
+                          </TableCell>
                         ))
                       }
-                    </div>
-                  </li>
+                  </TableRow>
                 ))
               }
-              {
+              </TableBody>
+              {/* {
                 renderFooter(props)
                   ? (
                     <li className="list-group-item">
@@ -212,12 +220,12 @@ function Grid(props) {
                     </li>
                   )
                   : null
-              }
-            </ul>
+              } */}
+            </Table>
           )
           : <div>{emptyText}</div>
       }
-    </div>
+    </Paper>
   );
 }
 
@@ -264,4 +272,5 @@ Grid.defaultProps = {
   total: 0,
 };
 
+// export default Grid;
 export default Grid;

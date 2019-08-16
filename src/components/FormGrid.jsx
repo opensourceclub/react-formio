@@ -5,8 +5,8 @@ import _map from 'lodash/map';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Delete, Save} from '@material-ui/icons';
 import {Button} from '@material-ui/core';
+import {Icon} from '@material-ui/core';
 import {withStyles} from '@material-ui/styles';
 
 import {defaultPageSizes} from '../constants';
@@ -20,6 +20,9 @@ import {stopPropagationWrapper} from '../utils';
 import Grid from './Grid';
 
 const styles = {
+  grid: {
+    marginBottom: '1rem'
+  },
   button: {
     marginRight: 10
   }
@@ -71,7 +74,7 @@ export default withStyles(styles)(class FormGrid extends React.Component {
       {
         action: 'view',
         buttonType: 'default',
-        icon: <Save fontSize="small"/>,
+        icon: <Icon className={'fa fa-plus-square'}/>,
         permissionsResolver() {
           return true;
         },
@@ -80,7 +83,7 @@ export default withStyles(styles)(class FormGrid extends React.Component {
       {
         action: 'submission',
         buttonType: 'default',
-        icon: <Save fontSize="small"/>,
+        icon: <Icon className={'fa fa-eye'}/>,
         permissionsResolver() {
           return true;
         },
@@ -89,7 +92,7 @@ export default withStyles(styles)(class FormGrid extends React.Component {
       {
         action: 'edit',
         buttonType: 'default',
-        icon: <Save fontSize="small"/>,
+        icon: <Icon className={'fa fa-edit'}/>,
         permissionsResolver() {
           return true;
         },
@@ -98,7 +101,7 @@ export default withStyles(styles)(class FormGrid extends React.Component {
       {
         action: 'delete',
         buttonType: 'secondary',
-        icon: <Delete fontSize="small"/>,
+        icon: <Icon className={'fa fa-trash-o'}/>,
         permissionsResolver() {
           return true;
         },
@@ -177,7 +180,7 @@ export default withStyles(styles)(class FormGrid extends React.Component {
             operations.map(({
               action,
               buttonType = 'default',
-              icon = null,
+              icon = <Icon/>,
               permissionsResolver = () => true,
               title = '',
             }) =>
@@ -191,6 +194,7 @@ export default withStyles(styles)(class FormGrid extends React.Component {
                     key={action}
                   >
                     {icon}
+                    &nbsp;&nbsp;
                     {title}
                   </Button>
                 )
@@ -229,6 +233,7 @@ export default withStyles(styles)(class FormGrid extends React.Component {
       onAction,
       onPageSizeChanged,
       pageSizes,
+      classes
     } = this.props;
 
     const skip = (page - 1) * limit;
@@ -252,7 +257,8 @@ export default withStyles(styles)(class FormGrid extends React.Component {
         pages={numPages}
         sortOrder={sort}
         total={total}
+        classes={classes}
       />
     );
   }
-})
+});

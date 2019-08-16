@@ -12,11 +12,9 @@ import Paper from '@material-ui/core/Paper';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 import Pagination from './Pagination';
-import {Button} from '@material-ui/core';
 
 function normalizePageSize(pageSize) {
   if (_isObject(pageSize)) {
@@ -74,13 +72,16 @@ function Grid(props) {
     pages,
     sortOrder,
     total,
+    classes
   } = props;
   const normalizedPageSizes = pageSizes.map(normalizePageSize);
+  window.console.log(classes);
   return (
-    <Paper>
+    <Paper className={classes.grid}>
       {
         items.length
           ? (
+            <React.Fragment>
             <Table>
               <TableHead>
                 <TableRow>
@@ -154,76 +155,75 @@ function Grid(props) {
                 ))
               }
               </TableBody>
-              {/* {
-                renderFooter(props)
-                  ? (
-                    <li className="list-group-item">
-                      <div className="row align-items-center">
-                        {
-                          renderPagination(props)
-                            ? (
-                              <div className="col-auto">
-                                <div className="row align-items-center">
-                                  <div className="col-auto">
-                                    <Pagination
-                                      pages={pages}
-                                      activePage={activePage}
-                                      pageNeighbours={pageNeighbours}
-                                      prev="前一页"
-                                      next="后一页"
-                                      onSelect={onPage}
-                                    />
-                                  </div>
-                                  {
-                                    renderPageSizeSelector(props)
-                                      ? (
-                                        <div className="col-auto">
-                                          <div className="row align-items-center">
-                                            <div className="col-auto">
-                                              <select
-                                                className="form-control"
-                                                value={pageSize}
-                                                onChange={(event) => onPageSizeChanged(event.target.value)}
-                                              >
-                                                {
-                                                  normalizedPageSizes.map(({
-                                                    label,
-                                                    value,
-                                                  }) => (
-                                                    <option key={value} value={value}>{label}</option>
-                                                  ))
-                                                }
-                                              </select>
-                                            </div>
+            </Table>
+            {
+              renderFooter(props)
+                ? (
+                  <div className="MuiToolbar-root MuiToolbar-regular MuiTablePagination-toolbar MuiToolbar-gutters">
+                      {
+                        renderPagination(props)
+                          ? (
+                            <div className="col-auto" style={{paddingTop: 20}}>
+                              <div className="row">
+                                <div className="col-auto">
+                                  <Pagination
+                                    pages={pages}
+                                    activePage={activePage}
+                                    pageNeighbours={pageNeighbours}
+                                    prev="前一页"
+                                    next="后一页"
+                                    onSelect={onPage}
+                                  />
+                                </div>
+                                {
+                                  renderPageSizeSelector(props)
+                                    ? (
+                                      <div className="col-auto">
+                                        <div className="row">
+                                          <div className="col-auto">
+                                            <select
+                                              className="form-control"
+                                              value={pageSize}
+                                              onChange={(event) => onPageSizeChanged(event.target.value)}
+                                            >
+                                              {
+                                                normalizedPageSizes.map(({
+                                                  label,
+                                                  value,
+                                                }) => (
+                                                  <option key={value} value={value}>{label}</option>
+                                                ))
+                                              }
+                                            </select>
                                           </div>
                                         </div>
-                                      )
-                                      : null
-                                  }
-                                </div>
+                                      </div>
+                                    )
+                                    : null
+                                }
+                                {
+                                  renderItemCounter(props)
+                                    ? (
+                                      <div className="col-auto ml-auto">
+                                        <span className="item-counter pull-right">
+                                          <span className="page-num">{ firstItem } - { lastItem }</span> / { total } 全部
+                                        </span>
+                                      </div>
+                                    )
+                                    : null
+                                }
                               </div>
-                            )
-                            : null
-                        }
-                        {
-                          renderItemCounter(props)
-                            ? (
-                              <div className="col-auto ml-auto">
-                                <span className="item-counter pull-right">
-                                  <span className="page-num">{ firstItem } - { lastItem }</span> / { total } 全部
-                                </span>
-                              </div>
-                            )
-                            : null
-                        }
-                      </div>
-                    </li>
-                  )
-                  : null
-              } */}
-            </Table>
+                            </div>
+                          )
+                          : null
+                      }
+                  </div>
+                )
+                : null
+            }
+          </React.Fragment>
           )
-          : <div>{emptyText}</div>
+          : <div style={{padding: '1rem 1.4rem'}}>{emptyText}</div>
       }
     </Paper>
   );
@@ -247,6 +247,7 @@ Grid.propTypes = {
   pages: PropTypes.number,
   sortOrder: PropTypes.string,
   total: PropTypes.number,
+  classes: PropTypes.object
 };
 
 Grid.defaultProps = {
@@ -270,6 +271,7 @@ Grid.defaultProps = {
   pages: 0,
   sortOrder: '',
   total: 0,
+  classes: {}
 };
 
 // export default Grid;

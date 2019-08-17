@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
+import Paper from '@material-ui/core/Paper';
+import {withStyles} from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import FormBuilder from './FormBuilder';
 import _set from 'lodash/set';
 import _cloneDeep from 'lodash/cloneDeep';
 import _camelCase from 'lodash/camelCase';
 
-export default class FormEdit extends Component {
+const styles = {
+  warrper: {
+    padding: '1rem',
+  },
+};
+export default withStyles(styles)(class FormEdit extends Component {
   static propTypes = {
     form: PropTypes.object.isRequired,
     options: PropTypes.object,
@@ -71,10 +78,11 @@ export default class FormEdit extends Component {
 
   render() {
     const {form} = this.state;
-    const {saveText} = this.props;
+    const {saveText, classes} = this.props;
 
     return (
-      <div>
+      <Paper>
+        <div className={classes.warrper}>
         <div className="row">
           <div className="col-lg-2 col-md-4 col-sm-4">
             <div id="form-group-title" className="form-group">
@@ -83,7 +91,7 @@ export default class FormEdit extends Component {
                 type="text"
                 className="form-control" id="title"
                 placeholder="表单标题"
-                value={this.state.form.title}
+                value={this.state.form.title || ''}
                 onChange={event => this.handleChange('title', event)}
               />
             </div>
@@ -96,7 +104,7 @@ export default class FormEdit extends Component {
                 className="form-control"
                 id="name"
                 placeholder="表单API Key"
-                value={this.state.form.name}
+                value={this.state.form.name || ''}
                 onChange={event => this.handleChange('name', event)}
               />
             </div>
@@ -144,7 +152,7 @@ export default class FormEdit extends Component {
                   className="form-control"
                   id="path"
                   style={{'textTransform': 'lowercase', width:'120px'}}
-                  value={this.state.form.path}
+                  value={this.state.form.path || ''}
                   onChange={event => this.handleChange('path', event)}
                 />
               </div>
@@ -165,6 +173,7 @@ export default class FormEdit extends Component {
           builder={this.props.builder}
         />
       </div>
+      </Paper>
     );
   }
-}
+});

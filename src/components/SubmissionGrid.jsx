@@ -5,7 +5,9 @@ import _isObject from 'lodash/isObject';
 import _isString from 'lodash/isString';
 import PropTypes from 'prop-types';
 import React from 'react';
-
+import {Icon} from '@material-ui/core';
+import {Button} from '@material-ui/core';
+import {withStyles} from '@material-ui/styles';
 import {defaultPageSizes} from '../constants';
 import {
   Columns,
@@ -20,7 +22,13 @@ import {
 
 import Grid from './Grid';
 
-export default class SubmissionGrid extends React.Component {
+const styles = {
+  button: {
+    marginRight: 10
+  }
+};
+
+export default withStyles(styles)(class SubmissionGrid extends React.Component {
   static propTypes = {
     columns: Columns,
     form: PropTypes.object.isRequired,
@@ -30,6 +38,7 @@ export default class SubmissionGrid extends React.Component {
     operations: Operations,
     pageSizes: PageSizes,
     submissions: PropTypes.object.isRequired,
+    classes: PropTypes.object,
   };
 
   static defaultProps = {
@@ -40,8 +49,8 @@ export default class SubmissionGrid extends React.Component {
     operations: [
       {
         action: 'view',
-        buttonType: 'warning',
-        icon: 'list-alt',
+        buttonType: 'default',
+        icon: <Icon className={'fa fa-list-alt'}/>,
         permissionsResolver() {
           return true;
         },
@@ -49,8 +58,8 @@ export default class SubmissionGrid extends React.Component {
       },
       {
         action: 'edit',
-        buttonType: 'secondary',
-        icon: 'edit',
+        buttonType: 'default',
+        icon: <Icon className={'fa fa-edit'}/>,
         permissionsResolver() {
           return true;
         },
@@ -58,11 +67,12 @@ export default class SubmissionGrid extends React.Component {
       },
       {
         action: 'delete',
-        buttonType: 'danger',
-        icon: 'trash',
+        buttonType: 'secondary',
+        icon: <Icon className={'fa fa-trash'}/>,
         permissionsResolver() {
           return true;
         },
+        title: '删除',
       },
     ],
     pageSizes: defaultPageSizes,
@@ -146,22 +156,17 @@ export default class SubmissionGrid extends React.Component {
             }) =>
               permissionsResolver(form, submission)
                 ? (
-                  <span
-                    className={`btn btn-${buttonType} btn-sm form-btn`}
-                    onClick={stopPropagationWrapper(() => onAction(submission, action))}
-                    key={action}
+                  <Button
+                  variant="contained"
+                  color={buttonType}
+                  className={this.props.classes.button}
+                  onClick={stopPropagationWrapper(() => onAction(submission, action))}
+                  key={action}
                   >
-                    {
-                      icon
-                        ? (
-                          <span>
-                            <i className={`fa fa-${icon}`} />&nbsp;
-                          </span>
-                        )
-                        : null
-                    }
-                    {title}
-                  </span>
+                  {icon}
+                  &nbsp;
+                  {title}
+                  </Button>
                 )
                 : null
             )
@@ -226,4 +231,4 @@ export default class SubmissionGrid extends React.Component {
       />
     );
   };
-}
+});

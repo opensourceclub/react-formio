@@ -8,7 +8,7 @@
     "build": "babel ./src --ignore=*.spec.js --out-dir ./lib --presets es2015,react,stage-2",
     "lint": "eslint src",
     "watch": "babel ./src --watch --ignore=*.spec.js --out-dir ./lib --presets es2015,react,stage-2",
-    "prepublish": "npm run lint; npm run build",
+    "prepublish": "npm run lint && npm run build",
     "deploy": "gh-pages -b chinese-translation-releases -d ."
   },
   "repository": {
@@ -29,9 +29,12 @@
   },
   "homepage": "https://github.com/formio/react-formio#readme",
   "dependencies": {
+    "@material-ui/core": "^4.3.2",
+    "@material-ui/icons": "^4.2.1",
+    "@material-ui/styles": "^4.3.0",
     "babel-polyfill": "^6.26.0",
     "core-js": "^3.1.4",
-    "formiojs": "git+ssh://git@github.com/opensourceclub/formio.js.git#chinese-translation-releases",
+    "formiojs": "file:../formio.js/lib",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "recompose": "^0.30.0"
@@ -65,8 +68,8 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-webpack": "^3.0.5",
     "mocha": "^5.2.0",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "16.8.2",
+    "react-dom": "16.8.2",
     "react-test-renderer": "^16.5.2",
     "react-transform-catch-errors": "^1.0.0",
     "sinon": "^7.0.0",

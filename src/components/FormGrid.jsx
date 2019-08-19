@@ -74,7 +74,7 @@ export default withStyles(styles)(class FormGrid extends React.Component {
       {
         action: 'view',
         buttonType: 'default',
-        icon: <Icon className={'fa fa-plus-square'}/>,
+        icon: <Icon>send</Icon>,
         permissionsResolver() {
           return true;
         },

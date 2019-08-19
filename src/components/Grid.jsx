@@ -75,7 +75,6 @@ function Grid(props) {
     classes
   } = props;
   const normalizedPageSizes = pageSizes.map(normalizePageSize);
-  window.console.log(classes);
   return (
     <Paper className={classes.grid}>
       {

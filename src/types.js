@@ -19,7 +19,7 @@ export const Columns = PropTypes.arrayOf(Column);
 export const Operation = PropTypes.shape({
   action: PropTypes.string.isRequired,
   buttonType: PropTypes.string,
-  icon: PropTypes.object,
+  icon: PropTypes.string,
   permissionsResolver: PropTypes.func,
   title: PropTypes.string,
 });

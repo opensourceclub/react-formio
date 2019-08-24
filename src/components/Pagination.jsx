@@ -70,7 +70,7 @@ function Pagination({
   });
 
   return (
-    <nav aria-label="...">
+    <nav aria-label="Page navigation">
       <ul className="pagination">
         <li className={`page-item ${(activePage === 1) ? 'disabled' : ''}`}>
           <a
